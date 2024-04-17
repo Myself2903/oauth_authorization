@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OAuth Providers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .oauth-links {
+            margin-top: 20px;
+        }
+        .oauth-link {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .oauth-link:hover {
+            background-color: #0056b3;
+        }
+        .home-link {
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login with:</h2>
+        <div class="oauth-links">
+            <a class="oauth-link" href="/oauth2/authorization/github">Github</a>
+            <a class="oauth-link" href="/oauth2/authorization/google">Google</a>
+        </div>
+        <a class="home-link" href="/">Back to Home</a>
+    </div>
+</body>
+</html>
