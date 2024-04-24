@@ -33,12 +33,29 @@ public class UserController {
         return Collections.singletonMap("name", principal.getAttribute("name"));
     }
     
-    @GetMapping("/token")
-    public Map<String, Object> getToken(@AuthenticationPrincipal OAuth2User principal) {
+    @GetMapping("/auth_user")
+    public Map<String, Object> getUserData(@AuthenticationPrincipal OAuth2User principal) {
         return Collections.singletonMap("name", principal);
     }
+
+    @GetMapping("/auth_token")
+    public OAuth2AuthenticationToken getAuthToken() {
+        OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        return authentication;
+    }
+
+    @GetMapping("/access_token")
+    public String getAccesToken() {
+        OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        String registrationId = authentication.getAuthorizedClientRegistrationId();
+        String accessToken = authorizedClientService.loadAuthorizedClient(registrationId, authentication.getName()).getAccessToken().getTokenValue();
+        return accessToken;
+    }
+
+
+
     @GetMapping("/repositories")
-    public List<String> getUserRepositories(@AuthenticationPrincipal OAuth2User principal) {
+    public List<String> getUserRepositories() {
         OAuth2AuthenticationToken authentication = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         String registrationId = authentication.getAuthorizedClientRegistrationId();
         String accessToken = authorizedClientService.loadAuthorizedClient(registrationId, authentication.getName()).getAccessToken().getTokenValue();
