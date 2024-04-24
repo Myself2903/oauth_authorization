@@ -8,6 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth -> auth
@@ -16,7 +17,7 @@ public class SecurityConfig {
         )
         .oauth2Login(l -> l
             .loginPage("/oauth_login.html")
-            .defaultSuccessUrl("/")
+            .defaultSuccessUrl("/", true)
         )
         .logout(l -> l
             // .logoutUrl("/logout").permitAll()
